@@ -641,11 +641,6 @@ ggplot(dfplot, aes(x = FPR, y = TPR, col = Classifier, lty = Classifier)) + geom
 
 
 
-youden <- rtestLR3$TPR +rtestLR3$TNR  - 1 # J = sensitivity + specificity − 1 = TSS
-plot(seq(0.01, 0.9, by = 0.01), rtestLR3$TSS , col = 0)
-lines(seq(0.01, 0.9, by = 0.01), rtestLR3$TSS,  col = 1, lty = 1, lwd = 2)
-lines(seq(0.01, 0.9, by = 0.01), youden,  col = 3, lty = 1, lwd = 2)
-
 
 dfplot <- data.frame(p = seq(0.01, 0.9, by = 0.01), ACC = t(rtestLR3$ACC), TPR = t(rtestLR3$TPR), TNR =  t(rtestLR3$TNR), TSS = t(rtestLR3$TSS), HSS = t(rtestLR3$HSS))
 
@@ -673,10 +668,6 @@ dfmax <- data.frame(cbind(LR, LR3,  LR13,RF,SVM,DNN_8_4,DNN_13_6_6 ,DNN_16_16,DN
 
 xtable(t(t(apply(dfmax[,1:9], 2, max))),digits = 2)#1:9
 
-maxp <- maxTSS
-for(i in 1:9)maxp[i]<-dfmax[dfmax[,i]==maxTSS[i],10]
-
-xtable(t(t(apply(dfmax[,1:9], 2, max))),digits = 2)
 
 
 apply(rtestLR$TSS, 2, quantile, prob = 0.5)==max(apply(rtestLR$TSS, 2, quantile, prob = 0.5))

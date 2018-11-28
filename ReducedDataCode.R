@@ -97,12 +97,12 @@ dtf <- data.frame(cbind(data, flare))
 dtf$flare<- as.factor(dtf$flare)
 
 
-for(i in 1:13){
-  p <- ggplot(dtf, aes(dtf[,i], fill = flare)) +
-    geom_density(alpha = 0.7) + xlab(names(dtf)[i]) +
-    scale_fill_manual( values = c("black","red"))
-  print(p)
-}
+# for(i in 1:13){
+#   p <- ggplot(dtf, aes(dtf[,i], fill = flare)) +
+#     geom_density(alpha = 0.7) + xlab(names(dtf)[i]) +
+#     scale_fill_manual( values = c("black","red"))
+#   print(p)
+# }
 ##############################
 # Scale data                 #
 ##############################
@@ -609,9 +609,6 @@ ggplot(dfplot, aes(x = FPR, y = TPR, col = Classifier, lty = Classifier)) + geom
 # ggsave("ROCcompareRDV3.pdf", width = 5, height = 3)
 
 
-
-
-youden <- rtestLR3$TPR +rtestLR3$TNR- 1 # J = sensitivity + specificity − 1 = TSS
 
 
 dfplot <- data.frame(p = seq(0.01, 0.9, by = 0.01), ACC = t(rtestLR3$ACC), TPR = t(rtestLR3$TPR), TNR =  t(rtestLR3$TNR), TSS = t(rtestLR3$TSS), HSS = t(rtestLR3$HSS))
